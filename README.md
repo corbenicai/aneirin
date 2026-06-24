@@ -25,8 +25,8 @@ answers, smaller bill.
 ## Why Aneirin
 
 - **Lossless.** Identical model behaviour. It removes re-billed context, not information.
-- **Local.** Runs on `127.0.0.1`. There is no Aneirin server in the path.
-- **No phone-home.** Zero network calls of its own. Your prompts, code, and counts stay on your machine.
+- **Local.** Runs on `127.0.0.1`. There is no Aneirin server in the request path.
+- **No telemetry.** Your prompts, code, and usage never leave your machine. Free and Lifetime make zero network calls; Monthly refreshes only its own licence (device id only, once a day).
 - **Your own account.** It only optimizes traffic you are already authorized to send.
 - **Zero workflow change.** Keep using Claude Code and Copilot exactly as you do today.
 - **Fully reversible.** One command uninstalls it. A kill-switch flips it to pure pass-through instantly.
@@ -77,10 +77,11 @@ interleaved thinking and multi-turn tool use). Every transformation is asserted 
 model-visible content byte-identical before it ships.
 
 > [!IMPORTANT]
-> **Privacy.** Aneirin makes no network calls of its own and contains no telemetry. Your
-> prompts, code, traffic, savings counts, and licence stay on your machine. The licence is
-> verified locally. There is no licence server and no "call home to check if you paid", so it
-> keeps working offline.
+> **Privacy.** Aneirin contains no telemetry. Your prompts, code, traffic, and savings counts
+> never leave your machine, and the licence is verified locally (it keeps working offline).
+> **Free and Lifetime make zero network calls of any kind.** A **Monthly** subscription does
+> one thing over the network: once a day it refreshes its own licence by sending **only your
+> device id** (a random-looking hash), never your prompts, code, or usage.
 
 ## Supported
 
@@ -114,8 +115,10 @@ locally, making no network calls of its own, verifying its licence offline, and 
 reversible with a one-command uninstall.
 
 **Can I trust a proxy with my prompts?**
-Everything stays on your machine. The proxy binds to `127.0.0.1` only and forwards to the same
-endpoint your editor already called. There is no Aneirin server to send anything to.
+Your prompts and code never leave your machine. The proxy binds to `127.0.0.1` only and
+forwards to the same endpoint your editor already called. The only Aneirin network endpoint is
+the licence service, and the only thing ever sent to it is your device id (and only on a
+Monthly plan, to refresh that licence). Your prompts and code are never sent anywhere.
 
 **What if it breaks something?**
 It fails open. On any internal error it forwards your original request untouched. You can also
