@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" font-family="Segoe UI,system-ui,sans-serif">
+  <rect width="1000" height="600" rx="14" fill="#ffffff" stroke="#e4e7eb"/>
+  <text x="40" y="50" fill="#15171a" font-size="26" font-weight="800">A typical optimized request gets 17.5% smaller</text>
+  <text x="40" y="80" fill="#6b7480" font-size="17">Average of 6,699 real optimized requests. Lossless: the model still receives everything it needs.</text>
+
+  <!-- before bar -->
+  <text x="40" y="138" fill="#6b7480" font-size="17">Before</text>
+  <rect x="130" y="120" width="560" height="34" rx="6" fill="#cfd5e0"/>
+  <text x="704" y="143" fill="#15171a" font-size="18" font-weight="700">557,535 tok</text>
+
+  <!-- after bar -->
+  <text x="40" y="196" fill="#6b7480" font-size="17">After</text>
+  <rect x="130" y="178" width="462" height="34" rx="6" fill="#1c7c4a"/>
+  <text x="606" y="201" fill="#15171a" font-size="18" font-weight="700">460,057 tok</text>
+
+  <!-- removed callout -->
+  <text x="40" y="258" fill="#15171a" font-size="18">Removed per request on average:
+    <tspan font-weight="800" fill="#3b5bdb">97,478 redundant tokens</tspan> (re-billed context the model had already seen).</text>
+
+  <line x1="40" y1="300" x2="960" y2="300" stroke="#e4e7eb"/>
+  <text x="40" y="338" fill="#15171a" font-size="22" font-weight="800">Tokens removed per request (how often, 6,699 requests)</text>
+  <rect x="70" y="488" width="150" height="30" rx="6" fill="#3b5bdb"/>
+    <text x="145" y="478" text-anchor="middle" fill="#15171a" font-size="20" font-weight="700">717</text>
+    <text x="145" y="544" text-anchor="middle" fill="#6b7480" font-size="18">under 10k</text>
+<rect x="280" y="455" width="150" height="63" rx="6" fill="#3b5bdb"/>
+    <text x="355" y="445" text-anchor="middle" fill="#15171a" font-size="20" font-weight="700">1,517</text>
+    <text x="355" y="544" text-anchor="middle" fill="#6b7480" font-size="18">10-50k</text>
+<rect x="490" y="380" width="150" height="138" rx="6" fill="#3b5bdb"/>
+    <text x="565" y="370" text-anchor="middle" fill="#15171a" font-size="20" font-weight="700">3,345</text>
+    <text x="565" y="544" text-anchor="middle" fill="#6b7480" font-size="18">50-150k</text>
+<rect x="700" y="472" width="150" height="46" rx="6" fill="#3b5bdb"/>
+    <text x="775" y="462" text-anchor="middle" fill="#15171a" font-size="20" font-weight="700">1,120</text>
+    <text x="775" y="544" text-anchor="middle" fill="#6b7480" font-size="18">150k+</text>
+</svg>

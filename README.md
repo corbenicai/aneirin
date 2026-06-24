@@ -1,119 +1,135 @@
-# Aneirin
+<p align="center">
+  <img src="assets/banner.png" alt="Aneirin: use fewer tokens, losslessly" width="100%">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/lossless-verified-1c7c4a" alt="lossless">
+  <img src="https://img.shields.io/badge/runs-100%25%20local-3b5bdb" alt="local">
+  <img src="https://img.shields.io/badge/telemetry-none-1c7c4a" alt="no telemetry">
+  <img src="https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-555" alt="platform">
+  <img src="https://img.shields.io/badge/pricing-%245%2Fmo%20%C2%B7%20%2475%20lifetime-111" alt="pricing">
+</p>
 
 **Use fewer tokens, losslessly.** Aneirin is a local proxy that cuts the token cost of
-Claude Code and GitHub Copilot — on your own machine, with your own account, without
-changing a single answer the model gives you.
+Claude Code and GitHub Copilot. It runs on your own machine, uses your own account, and does
+not change a single answer the model gives you.
 
-In development on one machine, Aneirin has **physically removed 652 million billed tokens**
-from real requests so far — redundant context the model never needed to see again. Same
+In development on one machine, Aneirin has physically removed **652 million billed tokens**
+from real requests so far. These are redundant tokens the model had already seen. Same
 answers, smaller bill.
 
 > [!NOTE]
-> **Lossless** means the model receives everything it needs to answer correctly. Aneirin
-> only trims context that is redundant or re-billed — never the meaning of your request.
-
----
+> **Lossless** means the model still receives everything it needs to answer correctly.
+> Aneirin only trims context that is redundant or re-billed, never the meaning of your request.
 
 ## Why Aneirin
 
-- **Lossless** — identical model behaviour; it removes re-billed context, not information.
-- **Local** — runs on `127.0.0.1`. There is no Aneirin server in the path.
-- **No phone-home** — zero network calls of its own. Your prompts, code, and counts never
-  leave your computer.
-- **Your own account** — it only optimizes traffic you're already authorized to send.
-- **Zero workflow change** — keep using Claude Code and Copilot exactly as you do today.
-- **Fully reversible** — one command uninstalls it; a kill-switch flips it to pure
-  pass-through instantly.
+- **Lossless.** Identical model behaviour. It removes re-billed context, not information.
+- **Local.** Runs on `127.0.0.1`. There is no Aneirin server in the path.
+- **No phone-home.** Zero network calls of its own. Your prompts, code, and counts stay on your machine.
+- **Your own account.** It only optimizes traffic you are already authorized to send.
+- **Zero workflow change.** Keep using Claude Code and Copilot exactly as you do today.
+- **Fully reversible.** One command uninstalls it. A kill-switch flips it to pure pass-through instantly.
 
 ## How it works
 
-1. Aneirin runs a small proxy on `localhost`; your editor's AI traffic passes through it.
-2. For each outgoing request it applies **lossless** reductions:
-   - removes your own previous turns' "thinking" blocks the model no longer needs,
-   - de-duplicates byte-identical context that would otherwise be re-sent,
-   - places prompt-cache markers where the provider caches most effectively.
-3. It forwards the slimmer request to the same provider endpoint your editor already used.
-4. If anything goes wrong inside Aneirin, it forwards your **original** request untouched
-   (fail-open) — it never blocks or corrupts a request to "save" tokens.
+```mermaid
+flowchart LR
+  A["Your editor<br/>Claude Code / Copilot"] -->|request| B["Aneirin<br/>local proxy · 127.0.0.1"]
+  B --> C["Lossless trim:<br/>remove stale thinking<br/>de-dupe repeated context<br/>relocate cache markers"]
+  C -->|slimmer request| D["AI provider"]
+  D -->|same answer| A
+```
 
-The biggest single lever is removing stale prior-turn reasoning. In one real request,
-Aneirin stripped **399,906 tokens** of prior thinking from a single call — content the model
-had already used and didn't need resent.
+1. Aneirin runs a small proxy on `localhost`. Your editor's AI traffic passes through it.
+2. For each outgoing request it applies lossless reductions: it removes your own previous
+   turns' "thinking" blocks the model no longer needs, de-duplicates byte-identical context,
+   and places prompt-cache markers where the provider caches most effectively.
+3. It forwards the slimmer request to the same provider endpoint your editor already used.
+4. If anything goes wrong inside Aneirin, it forwards your original request untouched
+   (fail-open). It never blocks or corrupts a request to "save" tokens.
+
+## The proof (real data, not estimates)
+
+<p align="center">
+  <img src="assets/savings.png" alt="A typical optimized request gets 17.5% smaller" width="100%">
+</p>
+
+Measured across **6,699 real optimized requests** on the developer's own machine: the typical
+optimized request is **17.5% smaller**, with about **97,000 redundant tokens removed** on
+average. The biggest single result so far removed **399,906 tokens** of stale prior thinking
+from one call.
+
+Aneirin counts only **provably removed** tokens (the ones it physically deleted from a
+request), never guesses. Its local dashboard shows your own saved total, and you can verify it
+against your provider's usage page. Nothing is uploaded to produce these numbers.
 
 ## What "lossless" means (the guarantee)
 
-| Preserved exactly | Removed / relocated (never billed twice) |
+| Preserved exactly | Removed or relocated (never billed twice) |
 |---|---|
 | Your current question and instructions | Prior-turn "thinking" the model already consumed |
 | Tool calls and their results | Byte-identical context repeated across turns |
 | The frontier (latest) turn, in full | Cache markers moved to better boundaries |
 
-Aneirin's losslessness is checked against a suite of **real captured transcripts** (including
-interleaved-thinking and multi-turn tool use) — every transformation is asserted to leave the
+Losslessness is checked against a suite of **real captured transcripts** (including
+interleaved thinking and multi-turn tool use). Every transformation is asserted to leave the
 model-visible content byte-identical before it ships.
 
 > [!IMPORTANT]
 > **Privacy.** Aneirin makes no network calls of its own and contains no telemetry. Your
 > prompts, code, traffic, savings counts, and licence stay on your machine. The licence is
-> verified **locally** — there is no licence server and no "call home to check if you paid."
-> It keeps working offline.
-
-## Measure it yourself
-
-Aneirin ships with a local dashboard and a savings ledger. It only counts **provably removed**
-tokens (the ones it physically deleted from a request) — not estimates. You can watch your own
-saved total grow and verify the numbers against your provider's usage page. Nothing is uploaded
-to produce them.
+> verified locally. There is no licence server and no "call home to check if you paid", so it
+> keeps working offline.
 
 ## Supported
 
 | | |
 |---|---|
-| Claude Code | ✅ VS Code and CLI |
-| GitHub Copilot | ✅ VS Code and CLI |
-| OS | Windows today; macOS and Linux to follow |
-| Account | your own — no shared or pooled access |
+| Claude Code | Yes (VS Code and CLI) |
+| GitHub Copilot | Yes (VS Code and CLI) |
+| OS | Windows today. macOS and Linux to follow |
+| Account | Your own. No shared or pooled access |
 
 ## Pricing
 
 | Tier | Price | What you get |
 |---|---|---|
 | **Free** | $0 | The full optimizer, capped at **5 million optimized tokens per day** (combined across projects). Dashboard and ledger always on. |
-| **Pro — Monthly** | **$5 / month** | No daily cap. Cancel anytime. |
-| **Pro — Lifetime** | **$75 once** | Everything in Pro, never expires, one machine. |
+| **Pro, Monthly** | **$5 / month** | No daily cap. Cancel anytime. |
+| **Pro, Lifetime** | **$75 once** | Everything in Pro, never expires, one machine. |
 
 For a token-heavy developer the lifetime licence typically pays for itself within about a
-month — and the dashboard shows you exactly how much you've saved.
+month, and the dashboard shows you exactly how much you have saved.
 
 ## FAQ
 
 **Does it change the answers I get?**
-No. It removes context the model has already used or that is byte-for-byte repeated, and
-relocates cache markers. The model's input meaning is unchanged; output behaviour is the same.
+No. It removes context the model has already used or that is repeated byte-for-byte, and it
+relocates cache markers. The model's input meaning is unchanged, so output behaviour is the same.
 
 **Why is it closed-source?**
-The optimizer is the product. In place of "read the code," Aneirin earns trust by being
-local, making no network calls of its own, verifying its licence offline, and being fully
+The optimizer is the product. In place of "read the code," Aneirin earns trust by running
+locally, making no network calls of its own, verifying its licence offline, and being fully
 reversible with a one-command uninstall.
 
 **Can I trust a proxy with my prompts?**
-Everything stays on your machine — the proxy binds to `127.0.0.1` only and forwards to the
-same endpoint your editor already called. There is no Aneirin server to send anything to.
+Everything stays on your machine. The proxy binds to `127.0.0.1` only and forwards to the same
+endpoint your editor already called. There is no Aneirin server to send anything to.
 
 **What if it breaks something?**
-It fails open: on any internal error it forwards your original request untouched. You can also
+It fails open. On any internal error it forwards your original request untouched. You can also
 drop a kill-switch file to make it pure pass-through instantly, or uninstall in one command.
 
 **Is this allowed by my provider?**
-You're optimizing your own authorized traffic with a local tool. A full plain-language note on
-what Aneirin does and the responsibilities involved ships alongside the product.
+You are optimizing your own authorized traffic with a local tool. A full plain-language note on
+what Aneirin does, and the responsibilities involved, ships alongside the product.
 
 ## Status
 
 Preparing for public release. Signed binaries, install instructions, and the purchase flow are
-on the way — this page will be updated when they land.
+on the way. This page will be updated when they land.
 
 ---
 
-© Corbenic AI, Inc. Aneirin is provided as-is; you are responsible for your own use of it under
-your provider's terms.
+<sub>© Corbenic AI, Inc. Aneirin is provided as-is. You are responsible for your own use of it under your provider's terms.</sub>
