@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/runs-100%25%20local-3b5bdb" alt="local">
   <img src="https://img.shields.io/badge/telemetry-none-1c7c4a" alt="no telemetry">
   <img src="https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-555" alt="platform">
-  <img src="https://img.shields.io/badge/pricing-%245%2Fmo%20%C2%B7%20%2475%20lifetime-111" alt="pricing">
+  <img src="https://img.shields.io/badge/pricing-%245%2Fmo%20%C2%B7%20%2479%20lifetime-111" alt="pricing">
 </p>
 
 **Use fewer tokens, losslessly.** Aneirin is a local proxy that cuts the token cost of
@@ -21,6 +21,55 @@ answers, smaller bill.
 > [!NOTE]
 > **Lossless** means the model still receives everything it needs to answer correctly.
 > Aneirin only trims context that is redundant or re-billed, never the meaning of your request.
+
+## Download
+
+**[⬇ Download the latest release](https://github.com/corbenicai/aneirin/releases/latest)** — Windows today (macOS and Linux to follow).
+
+Grab `aneirin-windows-*.zip`, unzip it, and follow the three steps below. Verify your
+download against the published `SHA256SUMS` if you wish.
+
+## Get started (Windows)
+
+Aneirin is a single program — `aneirin.exe`. No Node or other install needed.
+
+```powershell
+# 1. check it
+.\aneirin.exe selftest          # → "Aneirin engine OK"
+
+# 2. trust the local certificate (one time; generated on YOUR machine, never shipped)
+.\aneirin.exe install-ca
+
+# 3. run it (local optimizer on 127.0.0.1:8765 — leave it running)
+.\aneirin.exe
+```
+
+Then send your AI tool's traffic through it:
+
+```powershell
+# Claude Code (CLI) — set for the session, then use Claude Code as normal:
+$env:HTTPS_PROXY = "http://127.0.0.1:8765"
+```
+
+That puts you on the **Free** tier (full optimizer, 5,000,000 optimized tokens/day). Watch
+your savings in the local dashboard / ledger inside your Aneirin folder.
+
+> First run shows a "Windows protected your PC / unknown publisher" prompt until the build is
+> code-signed — click **More info → Run anyway**.
+
+Full guide: **[START.md](START.md)** · what it does and the responsibilities: **[RISK.md](RISK.md)** · privacy: **[PRIVACY.md](PRIVACY.md)**.
+
+## Buy a licence
+
+**[→ Get Pro](https://aneirin-signer.corbenic.workers.dev/buy)** — paste the device code shown by
+`aneirin.exe activate`, pick a plan, and you get a licence token to paste back:
+
+```powershell
+.\aneirin.exe activate "PASTE-YOUR-TOKEN-HERE"
+```
+
+The licence is verified locally and keeps working offline. It is bound to the one machine you
+bought it for.
 
 ## Why Aneirin
 
@@ -98,7 +147,7 @@ model-visible content byte-identical before it ships.
 |---|---|---|
 | **Free** | $0 | The full optimizer, capped at **5 million optimized tokens per day** (combined across projects). Dashboard and ledger always on. |
 | **Pro, Monthly** | **$5 / month** | No daily cap. Cancel anytime. |
-| **Pro, Lifetime** | **$75 once** | Everything in Pro, never expires, one machine. |
+| **Pro, Lifetime** | **$79 once** | Everything in Pro, never expires, one machine. |
 
 For a token-heavy developer the lifetime licence typically pays for itself within about a
 month, and the dashboard shows you exactly how much you have saved.
@@ -126,13 +175,18 @@ drop a kill-switch file to make it pure pass-through instantly, or uninstall in 
 
 **Is this allowed by my provider?**
 You are optimizing your own authorized traffic with a local tool. A full plain-language note on
-what Aneirin does, and the responsibilities involved, ships alongside the product.
+what Aneirin does, and the responsibilities involved, ships alongside the product — see
+[RISK.md](RISK.md).
 
-## Status
+## Uninstall
 
-Preparing for public release. Signed binaries, install instructions, and the purchase flow are
-on the way. This page will be updated when they land.
+```powershell
+.\aneirin.exe uninstall      # removes the local CA trust + restores normal traffic
+```
+
+Then delete the folder. Aneirin makes no system changes beyond the local certificate it
+removes here.
 
 ---
 
-<sub>© Corbenic AI, Inc. Aneirin is provided as-is. You are responsible for your own use of it under your provider's terms.</sub>
+<sub>© Corbenic AI, Inc. Aneirin is provided as-is under its [LICENSE](LICENSE). You are responsible for your own use of it under your provider's terms.</sub>
