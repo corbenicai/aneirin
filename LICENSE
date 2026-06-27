@@ -1,0 +1,59 @@
+Aneirin End-User Licence Agreement
+Copyright (c) 2026 Corbenic AI, Inc. All rights reserved.
+
+This is a proprietary, closed-source software product ("the Software"). It is licensed,
+not sold. By downloading, installing, or using the Software you agree to these terms.
+
+1. Licence grant
+   Subject to these terms and, for paid tiers, a valid licence token, Corbenic AI, Inc.
+   grants you a personal, non-exclusive, non-transferable, revocable licence to install and
+   use the Software on the number of machines permitted by your tier:
+   - Free tier: use of the Software with the daily optimization limit described in the
+     product documentation.
+   - Pro (Monthly or Lifetime): one (1) machine per licence, bound to that machine's device
+     identifier. A Lifetime licence does not expire; a Monthly licence is valid while the
+     subscription is active.
+
+2. Restrictions
+   You may not, and may not permit any third party to:
+   (a) copy, redistribute, sublicense, sell, rent, lease, or share the Software or any
+       licence token;
+   (b) reverse engineer, decompile, disassemble, deobfuscate, or otherwise attempt to derive
+       the source code, algorithms, or internal design of the Software, except to the limited
+       extent this restriction is prohibited by applicable law;
+   (c) modify, adapt, or create derivative works of the Software;
+   (d) remove or alter any proprietary notices, or circumvent the licensing, device-binding,
+       or usage-limit mechanisms.
+
+3. Your content and account
+   The Software runs locally on your machine and optimizes traffic you are already authorized
+   to send using your own provider account. You are solely responsible for your use of the
+   Software in accordance with the terms of service of any third-party provider (including but
+   not limited to Anthropic and GitHub). The Software is an independent tool and is not
+   affiliated with, endorsed by, or sponsored by any such provider.
+
+4. Privacy
+   The Software contains no telemetry. Your prompts, code, traffic, and savings data remain on
+   your machine. The only network interaction initiated by the Software is licence handling as
+   described in the product documentation, which transmits only a device identifier.
+
+5. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+   PURPOSE, AND NONINFRINGEMENT.
+
+6. Limitation of liability
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL CORBENIC AI, INC. BE LIABLE FOR
+   ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+   OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+   DEALINGS IN THE SOFTWARE. YOUR USE OF THE SOFTWARE IS AT YOUR SOLE RISK.
+
+7. Termination
+   This licence terminates automatically if you breach any of its terms. On termination you
+   must stop using and delete the Software. Sections 2 and 4 through 6 survive termination.
+
+8. Governing law
+   This Agreement is governed by the laws of the State of Delaware, United States, without
+   regard to its conflict-of-laws principles.
+
+Contact: Corbenic AI, Inc.
