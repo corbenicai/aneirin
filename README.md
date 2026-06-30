@@ -7,12 +7,16 @@
   <img src="https://img.shields.io/badge/runs-100%25%20local-3b5bdb" alt="local">
   <img src="https://img.shields.io/badge/telemetry-none-1c7c4a" alt="no telemetry">
   <img src="https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-555" alt="platform">
-  <img src="https://img.shields.io/badge/pricing-%245%2Fmo%20%C2%B7%20%2479%20lifetime-111" alt="pricing">
+  <img src="https://img.shields.io/badge/Free-5M%20tokens%2Fday-1c7c4a" alt="free tier">
+  <img src="https://img.shields.io/badge/Pro-%245%2Fmo%20%C2%B7%20%2479%20lifetime-111" alt="pro pricing">
 </p>
 
 **Use fewer tokens, losslessly.** Aneirin is a local proxy that cuts the token cost of
 Claude Code and GitHub Copilot. It runs on your own machine, uses your own account, and does
 not change a single answer the model gives you.
+
+**Free to start** — the full optimizer is free up to 5 million optimized tokens per day. Pro
+removes the cap ($5/mo or $79 lifetime). No sign-up to try it: download, run, save tokens.
 
 In development on one machine, Aneirin has physically removed **652 million billed tokens**
 from real requests so far. These are redundant tokens the model had already seen. Same
@@ -143,9 +147,12 @@ model-visible content byte-identical before it ships.
 
 ## Pricing
 
+**Aneirin is free to use** — the Free tier runs the full optimizer every day, no account, no
+card. Upgrade to Pro only when you want the daily cap removed.
+
 | Tier | Price | What you get |
 |---|---|---|
-| **Free** | $0 | The full optimizer, capped at **5 million optimized tokens per day** (combined across projects). Dashboard and ledger always on. |
+| **Free (community)** | **$0 forever** | The full optimizer, capped at **5 million optimized tokens per day** (combined across projects). Dashboard and ledger always on. No account, no card. |
 | **Pro, Monthly** | **$5 / month** | No daily cap. Cancel anytime. |
 | **Pro, Lifetime** | **$79 once** | Everything in Pro, never expires, one machine. |
 
