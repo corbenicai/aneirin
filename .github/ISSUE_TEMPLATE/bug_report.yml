@@ -1,0 +1,63 @@
+name: Bug report
+description: Something is not working, or Aneirin changed an answer you got.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please do **not** paste private prompts, code, or secrets here.
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: e.g. Windows 11
+    validations:
+      required: true
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Which tool were you using?
+      options:
+        - Claude Code (CLI)
+        - Claude Code (VS Code)
+        - GitHub Copilot (CLI)
+        - GitHub Copilot (VS Code)
+        - Other / not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Aneirin version
+      placeholder: e.g. v0.1.3 (shown by aneirin.exe version)
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened?
+      description: Include any message shown in the terminal or dashboard.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (if you can)
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I did not include private prompts, code, or secrets in this report.
+          required: true
+        - label: I am using the latest release.
+          required: false
