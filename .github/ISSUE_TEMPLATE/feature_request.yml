@@ -1,0 +1,33 @@
+name: Feature request or higher free limit
+description: Suggest an idea, or ask us to raise the free daily limit.
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. We especially want to hear from small users about the free daily limit.
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: Describe the feature, change, or the free limit you need.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would this help you?
+    validations:
+      required: false
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request is this?
+      options:
+        - New feature
+        - Higher free daily limit
+        - Improvement to something that exists
+        - Other
+    validations:
+      required: true
