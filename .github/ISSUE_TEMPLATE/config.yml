@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem (report privately)
+    url: https://github.com/corbenicai/aneirin/security/advisories/new
+    about: Please do NOT open a public issue for security problems. Report privately here, or email sietse@corbenic.ai.
+  - name: Question or general help
+    url: https://github.com/corbenicai/aneirin/discussions
+    about: Not a bug? Ask a question or start a discussion.
